@@ -7,9 +7,9 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "username" {}
-variable "password" {}
-variable "public_key" {}
+variable "azure_username" {}
+variable "azure_password" {}
+variable "aws_local_public_key" {}
 
 module "azureRg" {
   source         = "./modules/azure/vnet/"
@@ -20,8 +20,8 @@ module "azureRg" {
   subnet_names   = ["AzureGwsubnet1"]
   vnet_name      = "AzureVnet1"
   gw_subnet_cidr = "100.0.1.0/24"
-  username       = var.username
-  password       = var.password
+  username       = var.azure_username
+  password       = var.azure_password
 }
 
 module "azure2Rg" {
@@ -33,8 +33,8 @@ module "azure2Rg" {
   subnet_names   = ["Azure2Gwsubnet1"]
   vnet_name      = "Azure2Vnet1"
   gw_subnet_cidr = "101.0.1.0/24"
-  username       = var.username
-  password       = var.password
+  username       = var.azure_username
+  password       = var.azure_password
 }
 
 module "awsVpc" {
@@ -45,7 +45,7 @@ module "awsVpc" {
   tags = {
     "Name" = "awsMultiCloudVpc1"
   }
-  public_key = var.public_key
+  public_key = var.aws_local_public_key
   ami        = "ami-0b161e951484253ab"
 }
 
