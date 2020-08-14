@@ -30,14 +30,18 @@ provider "aws" {
 
 ### Deploy
 Run the following commands to deploy the modules defined in the main.tf file
-`terraform init`
-`terraform plan`
-`terraform apply`
+1. `terraform init`
+
+2. `terraform plan`
+
+3. `terraform apply`
 
 As part of the apply, we will be deploying VMs in AWS and Azure and will need the following variables to be set to SSH onto these instances.
 
 `azure_username` : Username to SSH into the Azure instance
+
 `azure_password` : Password to SSH into the Azure instance
+
 `aws_public_ssh_key`  : Public portion of your local SSH key.
 
 Note: You can always change the Azure instance to use SSH keys by modifying the modules/azure/vnet/vnet.tf file
