@@ -24,19 +24,6 @@ module "azureRg" {
   password       = var.azure_password
 }
 
-module "azure2Rg" {
-  source         = "./modules/azure/vnet/"
-  rg_location    = "westus2"
-  rg_name        = "multiCloud-Azure2"
-  vnet_cidr      = ["101.0.0.0/16"]
-  subnet_list    = ["101.0.0.0/24"]
-  subnet_names   = ["Azure2Gwsubnet1"]
-  vnet_name      = "Azure2Vnet1"
-  gw_subnet_cidr = "101.0.1.0/24"
-  username       = var.azure_username
-  password       = var.azure_password
-}
-
 module "awsVpc" {
   source       = "./modules/aws/vpc/"
   cidr         = "10.0.0.0/16"

@@ -49,14 +49,6 @@ resource "azurerm_virtual_network_gateway" "virtual_network_gateway" {
     private_ip_address_allocation = "Dynamic"
     subnet_id                     = azurerm_subnet.gw_subnet.id
   }
-  /*
-  ip_configuration {
-    name                          = azurerm_public_ip.public_ips[1].name
-    public_ip_address_id          = azurerm_public_ip.public_ips[1].id
-    private_ip_address_allocation = "Dynamic"
-    subnet_id                     = azurerm_subnet.gw_subnet.id
-  }
-  */
 }
 
 
@@ -109,24 +101,4 @@ resource "azurerm_virtual_machine" "host" {
   os_profile_linux_config {
     disable_password_authentication = false
   }
-}
-
-
-output "azure_gw_info" {
-  value = setproduct(azurerm_public_ip.public_ips.*.ip_address, var.vnet_cidr)
-}
-
-output "azure_vng_id" {
-  value = azurerm_virtual_network_gateway.virtual_network_gateway.id
-}
-output "rg_location" {
-  value = azurerm_resource_group.rg.location
-}
-
-output "rg_name" {
-  value = azurerm_resource_group.rg.name
-}
-
-output "vpn_gw_subnet_cidr" {
-  value = azurerm_subnet.gw_subnet.id
 }

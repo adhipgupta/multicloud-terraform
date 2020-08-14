@@ -19,11 +19,7 @@ output "aws_connections" {
 output "aws_connection_info" {
   value = setproduct(aws_vpn_connection.vpnConn.*.id, [var.vpc_cidr])
 }
-/*
-output "aws_tunnel_info_address" {
-  value = concat(aws_vpn_connection.vpnConn.*.tunnel1_address, aws_vpn_connection.vpnConn.*.tunnel2_address)
-}
-*/
+
 output "aws_tunnel_info_address" {
   value = setproduct(concat(aws_vpn_connection.vpnConn.*.tunnel1_address, aws_vpn_connection.vpnConn.*.tunnel2_address), [var.vpc_cidr])
 }

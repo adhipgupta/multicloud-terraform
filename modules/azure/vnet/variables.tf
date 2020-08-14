@@ -19,6 +19,9 @@ variable "subnet_list" {
 variable "gw_subnet_cidr" {
   description = "Azure VPN Gateway needs a dedicated subnet. CIDR block for that subnet"
 }
-
-variable "username" {}
-variable "password" {}
+variable "username" {
+  description = "Azure VM Username"
+}
+variable "password" {
+  description = "Azure VM password"
+}
